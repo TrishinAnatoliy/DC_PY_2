@@ -1,0 +1,207 @@
+import doctest
+
+class Bottle:
+    
+    def __init__(self, material: str, closed: bool, filled: bool):
+        """
+        Создание и подготовка к работе объекта "Бутылка"
+        :param material: материал бутылки
+        :param closed: закрыта ли бутылка
+        :param filled: наполнена ли бутылка (целиком)
+        
+        Примеры:
+        >>> bottle = Bottle("стекло", True, True)  # инициализация экземпляра класса
+        """
+        
+        self.material = material
+
+        if not isinstance(material, str):
+            raise TypeError("Материал бутылки должен иметь тип str")
+
+        self.closed = closed
+
+        if not isinstance(closed, bool):
+            raise TypeError("Бутылка может быть либо закрыта, либо нет, используйте тип bool")
+
+        self.filled = filled
+
+        if not isinstance(filled, bool):
+            raise TypeError("Бутылка должна быть либо наполнена, либо нет, используйте тип bool")
+
+
+    def is_closed_bottle(self) -> bool:
+        """
+        Функция, которая проверяет, является ли бутылка закрытой
+        :return: Является ли бутылка закрытой
+        Примеры:
+        >>> bottle = Bottle("пластик", True, True)
+        >>> bottle.is_closed_bottle()
+        """
+        ...
+    
+
+    def open_bottle(self):
+        """
+        Открытие бутылки.
+        :raise ValueError: Если бутылка уже открыта, вызывает ошибку
+        Примеры:
+        >>> bottle = Bottle("пластик", True, True)
+        >>> bottle.open_bottle()
+        """
+        
+        if not closed:
+            raise ValueError("Бутылка должна быть закрыта")
+        ...
+
+
+    def fill_bottle(self):
+        """
+        Наполнение бутылки.
+        :raise ValueError: Если бутылка уже наполнена, вызывает ошибку
+        :raise ValueError: Если бутылка закрыта, вызывает ошибку
+        Примеры:
+        >>> bottle = Bottle("пластик", False, False)
+        >>> bottle.fill_bottle()
+        """
+
+        if filled:
+            raise TypeError("Бутылка должна быть пустой")
+        if closed:
+            raise ValueError("Бутылка должна быть открытой")
+        ...
+
+
+class Tire:
+
+    def __init__(self, inflation_pct: float, studded: bool):
+        """
+        Создание и подготовка к работе объекта "Шина"
+        :param inflation_pct: процент наполненности шин воздухом
+        :param studded: шипованная ли резина
+        
+        Примеры:
+        >>> tire = Tire(95, True)  # инициализация экземпляра класса
+        """
+        
+        self.inflation_pct = inflation
+
+        if not isinstance(inflation, float):
+            raise TypeError("Уровень наполненности шин должен быть типа int")
+        
+        if inflation < 0:
+            raise ValueError("Уровень наполненности шин не может быть отрицательным числом")
+
+        if inflation > 100:
+            raise ValueError("Не накачивайте шину больше 100%, она лопнет")
+        
+        self.studded = studded
+
+        if not isinstance(studed, bool):
+            raise TypeError("Шина может быть либо шипованной, либо нет, используйте тип bool")
+
+
+    def is_stubbed_tire(self) -> bool:
+        """
+        Функция, которая проверяет, является ли шина шипованной
+        :return: Является ли шина шипованной
+        Примеры:
+        >>> tire = Tire(95, True)
+        >>> tire.is_stubbed_tire()
+        """
+        ...
+    
+
+    def tire_pumping(self, air: int) -> None:
+        """
+        Подкачивание шины.
+        
+        :param air: Объем докачиваемого воздуха в процентах
+        :raise ValueError: Если количество воздуха превышает свободное место в шине, то вызывает ошибку
+        
+        Примеры:
+        >>> tire = Tire(77, False)
+        >>> tire.tire_pumping(20)
+        """
+        if not isinstance(air, (int, float)):
+            raise TypeError("Объем докачиваемого воздуха должен иметь тип int или float")
+        
+        if air < 0:
+            raise ValueError("Добавляемый объем должен иметь положительное значение")
+        
+        ...
+
+
+class cat:
+
+    def __init__(self, fluffy: int, hungry: bool):
+        """
+        Создание и подготовка к работе объекта "Кошка"
+
+        :param fluffy: степень пушистости кошки по шкале от 0 до 10
+        :param hungry: хочет ли кошка есть
+        
+        Примеры:
+        >>> cat = Cat(9, True)  # инициализация экземпляра класса
+        """
+        
+        self.fluffy = fluffy
+
+        if not isinstance(fluffy, int):
+            raise TypeError("Степень пушистости кошки должна быть отражена типом int")
+
+        if not 0 <= fluffy <= 10:
+            raise ValueError("Степень пушистости кошки должна лежать в диапазоне от 0 до 10")
+
+        self.hungry = hungry
+
+        if not isinstance(hungry, bool):
+            raise TypeError("Кошка может быть или голодной, или нет, используйте тип bool")
+
+        if not hungry:
+            raise ValueError("Кошка всегда хочет есть, установите параметр True")
+    
+    def feed_cat(self, food: float):
+        """
+        Кормление кошки.
+        
+        :param food: Количество еды для кошки в граммах
+        
+        :raise ValueError: Нельзя забирать еду у кошки, она хочет кушать!
+
+        Примеры:
+        >>> cat = Cat(9, True)
+        >>> cat.feed_cat(100)
+        """
+        
+        if not isinstance(food, (int, float)):
+            raise TypeError("Количество еды в граммах должно иметь тип int или float")
+        
+        if food < 0:
+            raise ValueError("Добавляемая еда должна иметь положительное значение")
+        
+        ...
+
+    def cat_stroking(self, times: int):
+        """
+        Гладим кошку.
+
+        :param times: Сколько раз нужно гладить кошку
+        
+        :raise ValueError: Нельзя мало гладить кошку
+
+        Примеры:
+        >>> cat = Cat(9, True)
+        >>> cat.cat_stroking(1000)
+        """
+
+        if not isinstance(times, (int)):
+            raise TypeError("Количество поглаживаний должно иметь тип int")
+        
+        if times < 100:
+            raise ValueError("Нельзя мало гладить кошку, погладьте хотя бы 100 раз")
+        
+        ...
+
+
+if __name__ == "__main__":
+    doctest.testmod()  # тестирование примеров, которые находятся в документации
