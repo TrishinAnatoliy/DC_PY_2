@@ -1,0 +1,36 @@
+from lab2 import Book
+
+class Library(Book):
+
+    def __init__(self, books: list):
+        
+        super.__init__(id_, name, pages)
+        
+        insert = input()
+
+        self.books = books
+
+        if insert is None:
+            books = []
+
+        
+
+    def get_next_book_id(self):
+        """
+        Метод, возвращающий идентификатор для добавления новой книги в библиотеку.
+        """
+        # Если книг в библиотеке нет, то вернуть 1.
+        # Если книги есть, то вернуть идентификатор последней книги увеличенный на 1.
+        if books == []:
+            return 1
+        else:
+            return f'{id_ + 1}'
+    
+    def get_index_by_book_id(self):
+        """ 
+        Метод, возвращающий индекс книги в списке, который хранится в атрибуте экземпляра класса.
+        Если книга существует, то вернуть индекс из списка.
+        """
+        return f'{id_}'
+
+        raise ValueError("Книги с запрашиваемым id не существует")
