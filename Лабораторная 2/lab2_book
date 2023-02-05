@@ -1,0 +1,59 @@
+class Book:
+    
+    def __init__(self, id_: int, name: str, pages: int):
+        """
+        Создание и подготовка к работе объекта класса Книга.
+
+        :param id_: - идентификатор книги
+        :param name: - Название книги
+        :param pages: - Количество страниц в книге
+
+        Пример:
+        >>> book = Book(1, "Парри Готтер", 400)  # инициализация экземпляра класса
+        """
+        self.name = name
+
+        if not isinstance(name, str):
+            raise TypeError("Название книги должно иметь тип str")
+
+        self.id_ = id_
+
+        if not isinstance(id_, int):
+            raise TypeError("ID должен иметь тип int")
+
+        if not id_ > 0:
+            raise ValueError("Идентификатор книги должен быть больше 0")
+        
+        self.pages = pages
+        
+        if not isinstance(pages, int):
+            raise TypeError("Количество страниц должно иметь тип int")
+
+        if not pages > 0:
+            raise ValueError("Количество страниц в книге должно быть больше 0")
+
+
+    def __str__(self) -> str:
+        """
+        Возвращает строку формата, где "название_книги" берется с помощью атрибута name:
+        
+        >>> Книга "название_книги" 
+
+        Пример:
+        >>> book = Book(1, "Парри Готтер", 400)
+        >>> book.__str__()
+        """
+        return f'Книга {self.name}'
+
+
+    def __repr__(self) -> str:
+        """
+        Возвращает валидную python строку, 
+        по которой можно инициализировать точно такой же экземпляр.
+        
+        Пример:
+        >>> Book(id_=1, name='test_name_1', pages=200)
+        """
+        return f'Book(id_={self.id}, name={self.name}, pages={self.pages})'
+
+
