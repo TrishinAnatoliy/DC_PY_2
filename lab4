@@ -1,0 +1,204 @@
+class Automobile:
+
+    def __init__(self, wheels: int, doors: int):
+        """
+        Создание и подготовка к работе объекта "Автомобиль"
+
+        :param wheels: количество колес
+        :param doors: количество дверей
+
+        Примеры:
+        >>> automobile = Automobile(4, 2)  # инициализация экземпляра класса
+        """
+
+        self.wheels = wheels
+
+        if not isinstance(wheels, int):
+            raise TypeError("Количество колес должно иметь тип int")
+
+        if wheels < 4:  # согласно википедии, автомобиль имеет >= 4 колес
+            raise ValueError("Автомобиль должен иметь не менее 4 колёс")
+
+        self.doors = doors
+
+        if not isinstance(doors, int):
+            raise TypeError("Количество дверей должно иметь тип int")
+
+        if doors < 0:  # у багги часто отсутствуют двери, поэтому в параметре строго меньше
+            raise ValueError("В автомобиле не может быть меньше 0 дверей")
+
+    def door_remove(self):
+        """
+        Функция, которая снимает дверь с автомобиля
+
+        :raise ValueError: Если дверей 0, вызывает ошибку
+
+        Примеры:
+        >>> automobile = Automobile(4, 2)
+        >>> automobile.door_remove()
+        """
+
+        if doors >= 1:
+            doors -= 1
+        else:
+            raise ValueError("В автомобиле не может быть меньше 0 дверей")
+
+    def __str__(self):
+        """
+        Возвращает строку формата:
+
+        >>> Автомобиль. Количество колес: 4. Количество дверей 2. 
+
+        Пример:
+        >>> automobile = Automobile(4, 2)
+        >>> automobile.__str__()
+        """
+
+        return f"Автомобиль. Количество колес: {self.wheels}. Количество дверей {self.doors}"
+
+    def __repr__(self):
+        """
+        Возвращает валидную python строку, 
+        по которой можно инициализировать точно такой же автомобиль.
+
+        >>> Automobile(wheels=4, doors=2)
+
+        Пример:
+        >>> automobile = Automobile(4, 2)
+        >>> automobile.__repr__()
+        """
+
+        return f"{self.__class__.__name__}(wheels={self.wheels!r}, doors={self.doors!r})"
+
+
+class Car(Automobile):
+
+    def __init__(self, wheels: int, doors: int, passengers: bool):
+        """
+        Создание и подготовка к работе объекта "Легковой автомобиль"
+
+        :param wheels: количество колес
+        :param doors: количество дверей
+        :param passengers: есть ли пассажиры
+
+        Примеры:
+        >>> car = Car(4, 2, False)  # инициализация экземпляра класса
+        """
+
+        super().__init__(wheels, doors)
+
+        self.passengers = passengers
+
+        if not isinstance(passengers, bool):
+            raise TypeError(
+                "Пассажиры либо могут быть, либо нет, используйте тип bool")
+
+    def passenger_drop_off(self):
+        """
+        Функция, которая высаживает пассажира
+
+        :raise ValueError: Если нет пассажиров, вызывает ошибку
+
+        Примеры:
+        >>> car = Car(4, 2, False)
+        >>> car.passenger_drop_off()
+        """
+
+        if passengers == True:
+            passengers = False
+        else:
+            raise ValueError("Нельзя высадить пассажиров, если их нет")
+
+    def door_remove(self):
+        """
+        По законодательству РФ нельзя убирать пассажирские двери в легковом автотранспорте,
+        поэтому функция возвращает соответствующее значение
+
+        Примеры:
+        >>> car = Car(4, 2, False)
+        >>> car.door_remove()
+        """
+
+        return f'Нельзя убрать дверь пассажирского автомобиля, это опасно'
+
+    def __str__(self):
+        """
+        Возвращает строку формата:
+
+        >>> Легковой автомобиль. Количество колес: 4. Количество дверей 2. Есть пассажиры? True.
+
+        Пример:
+        >>> car = Car(4, 2, True)
+        >>> car.__str__()
+        """
+
+        return f"Легковой автомобиль. Количество колес: {self.wheels}. Количество дверей: {self.doors} Есть пассажиры? {self.roof}."
+
+    def __repr__(self):
+        """
+        Возвращает валидную python строку, 
+        по которой можно инициализировать точно такой же легковой автомобиль.
+
+        >>> Car(wheels=4, doors=2, passengers=True)
+
+        Пример:
+        >>> car = Car(4, 2, True)
+        >>> car.__repr__()
+        """
+
+        return f"{self.__class__.__name__}(wheels={self.wheels!r}, doors={self.doors!r}, passengers={self.passengers!r})"
+
+
+class Truck(Automobile):
+
+    def __init__(self, wheels: int, doors: int, capacity: float):
+        """
+        Создание и подготовка к работе объекта "Грузовой автомобиль"
+
+        :param wheels: количество колес
+        :param doors: количество дверей
+        :param capacity: вместимость кузова
+
+        Примеры:
+        >>> truck = Truck(4, 2, 6942.0)  # инициализация экземпляра класса
+        """
+
+        super().__init__(wheels, doors)
+
+        self.capacity = capacity
+
+        if not isinstance(capacity, float, int):
+            raise TypeError("Вместимость должна быть типа float или int")
+
+        if not capacity >= 0:
+            raise ValueError("Вместимость автомобиля не может быть меньше 0")
+
+    def door_remove(self):
+        pass
+
+    def __str__(self):
+        """
+        Возвращает строку формата:
+
+        >>> Грузовой автомобиль. Количество колес: 4. Количество дверей: 2. Вместимость: 6942.0 кг.
+
+        Пример:
+        >>> truck = Truck(4, 2, 6942.0)
+        >>> truck.__str__()
+        """
+
+        return f"Грузовой автомобиль. Количество колес: {self.wheels}. Количество дверей: {self.doors}. Вместимость: {self.capacity} кг."
+
+    def __repr__(self):
+        """
+        Возвращает валидную python строку, 
+        по которой можно инициализировать точно такой же грузовой автомобиль.
+
+        >>> Truck(wheels=4, doors=2, capacity=6942.0)
+
+        Пример:
+        >>> truck = Truck(4, 2, 6942.0)
+        >>> truck.__repr__()
+        """
+
+        return f"{self.__class__.__name__}(wheels={self.wheels!r}, doors={self.doors!r}, capacity={self.capacity!r})"
